@@ -1,0 +1,83 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="sort">
+        <form name="sort" action="{{ currentUri }}" method="post">
+            <div>
+                <label>Сортировать по:</label>
+                <select name="sortby" id="sortby">
+                    <option {{ formOptions['default']|default('selected') }} value="default">&lt;Нет значения&gt;</option>
+                    <option {{ formOptions['username']|default('') }} value="username">имени пользователя</option>
+                    <option {{ formOptions['email']|default('') }} value="email">e-mail</option>
+                    <option {{ formOptions['status']|default('') }} value="status">статусу</option>
+                </select>
+                <select name="order" id="order">
+                    <option {{ formOptions['asc']|default('selected') }}  value="asc">По возрастанию</option>
+                    <option {{ formOptions['desc']|default('') }} value="desc">По убыванию</option>
+                </select>
+            </div>
+            <button type="submit">Сортировать</button>
+            <button type="button" onclick="formReset(event)">Сбросить</button>
+        </form>
+    </div>
+
+    <table class="tasklist">
+        <thead>
+        <tr>
+            <th class="{{ tableSort.column == 'username'
+            ? (tableSort.order == 'asc' ? 'sort-header-asc' : 'sort-header-desc') : '' }}">Имя пользователя</th>
+            <th class="{{ tableSort.column == 'email'
+            ? (tableSort.order == 'asc' ? 'sort-header-asc' : 'sort-header-desc') : '' }}">E-mail</th>
+            <th class="{{ tableSort.column == 'status'
+            ? (tableSort.order == 'asc' ? 'sort-header-asc' : 'sort-header-desc') : '' }}">Статус</th>
+            <th class="add-link">
+                <a href="{{ root_prefix }}task/new">Новая задача</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in taskList %}
+            <tr>
+                {#TODO: add asc/desc buttons#}
+                <td class="username">{{ item.username }}</td>
+                <td class="email">{{ item.email }}</td>
+                <td class="status">{{ item.status == 'A' ? 'Accomplished' : 'In process' }}</td>
+                {%- if item.canEdit -%}
+                    <td class="edit-link">
+                        <a href="{{ item.editLink }}">Редактировать</a>
+                    </td>
+                {%- endif -%}
+            </tr>
+            <tr>
+                <td class="content" colspan="3"><span>Текст задачи:</span>{{ item.content }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pages">
+        {% if pages is defined %}
+            {%- for page in pages -%}
+                {{- loop.index0 > 0 ? ' • ' : '' -}}
+                <a href="{{ page.active ? '#' : page.ref }}" {{ page.active ? ' class="active-page"' : '' }}><span>{{ page.number }}</span></a>
+            {%- endfor -%}
+        {% else %}
+            <span>1</span>
+        {% endif %}
+    </div>
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function formReset(event) {
+            let form = event.target;
+            while (form.nodeName != "FORM") {
+                form = form.parentNode;
+            }
+            form.elements.sortby.value = 'default';
+
+            form.submit();
+        }
+    </script>
+{% endblock %}

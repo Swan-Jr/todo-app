@@ -1,0 +1,23 @@
+{% extends 'default.html.twig' %}
+
+{% block body %}
+    <div class="info-message{{ success ? ' success-message' : ' error-message' }}">
+        <div>{{ message }}</div>
+        <div class="timer">{{ redirectMessage }} через: <span id="countdown"></span> секунд(-ы)</div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let seconds = 3;
+        countdown.innerHTML = seconds;
+        let timerId = setInterval(function () {
+            seconds--;
+            countdown.innerHTML = seconds;
+            if (seconds === 0) {
+                clearInterval(timerId);
+                window.location = '{{ redirectPath }}';
+            }
+        }, 1000);
+    </script>
+{% endblock %}

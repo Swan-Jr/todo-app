@@ -1,0 +1,16 @@
+{% extends 'default.html.twig' %}
+
+{% block body %}
+    <div class="auth-info">
+        Вы вошли как: {{ user_name }}
+    </div>
+    {% if isLoggedIn %}
+        <div class="auth-btn logout">
+            <a class="link" href="{{ root_prefix~'logout' }}">Выйти</a>
+        </div>
+    {% else %}
+        <div class="auth-btn login">
+            <a class="link" href="{{ root_prefix~'login' }}">Войти</a>
+        </div>
+    {% endif %}
+{% endblock %}

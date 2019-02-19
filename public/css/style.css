@@ -1,0 +1,308 @@
+body {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*auth-info*/
+.auth-info {
+    position: absolute;
+
+    left: 10px;
+    top: 10px;
+    padding: 5px 10px;
+
+    font-family: my-sans-serif, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    color: #000000;
+
+    background-color: #eeeeee;
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 5px;
+}
+
+/*container style*/
+.task, .pages, .tasklist, .sort, .info-message {
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tasklist {
+    margin-top: 5px;
+    max-width: 600px;
+}
+
+.task {
+    margin-top: 60px;
+}
+
+/*sort style*/
+.sort {
+    width: 450px;
+    height: auto;
+    padding: 10px;
+
+    font-family: my-sans-serif, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: normal;
+    color: rgb(98, 98, 98);
+    text-align: left;
+
+    background-color: rgb(241, 241, 241);
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 5px;
+}
+
+.sort div:nth-child(2) {
+    margin-bottom: 10px;
+}
+
+.sort button:nth-of-type(2){
+    float: right;
+}
+
+.sort-header-asc::after {
+    content: ' ↑';
+}
+
+.sort-header-desc::after {
+    content: ' ↓';
+}
+
+/*tasklist style*/
+table.tasklist td,
+table.tasklist th {
+    padding-right: 10px;
+    padding-left: 10px;
+
+    line-height: 2em;
+    vertical-align: top;
+
+    background-color: #ddd;
+    border-bottom: 3px double black;
+}
+
+table.tasklist tr td:not(:nth-child(n+3)):not(.content),
+table.tasklist tr th:not(:nth-child(n+3)) {
+    border-right: 1px solid black;
+}
+
+table.tasklist th {
+    color: white;
+    text-align: center;
+
+    background-color: #08ddcd;
+    border-bottom: 10px solid transparent;
+}
+
+.tasklist .edit-link,
+.tasklist .add-link{
+    position: relative;
+
+    padding: 0;
+
+    background-color: white;
+    border: none;
+}
+
+.tasklist .edit-link a,
+.tasklist .add-link a {
+    position: absolute;
+    top: 5px;
+    left: 4px;
+
+    display: block;
+    width: 140px;
+
+    color: black;
+    text-align: center;
+    font-weight: bold;
+
+    background-color: #d9d9d9;
+    border-radius: 10px;
+}
+
+.tasklist .add-link a {
+    top: 0;
+
+    width: 130px;
+}
+
+.tasklist .edit-link a:hover {
+    color: white;
+    text-decoration: none;
+
+    background-color: #cbcd25;
+}
+
+.tasklist .add-link a:hover {
+    color: white;
+    text-decoration: none;
+
+    background-color: #69cd26;
+}
+
+.tasklist .content {
+    position: relative;
+
+    height: 50px;
+    max-height: 200px;
+
+    white-space: pre-wrap;
+
+    background-color: #eeeeee;
+    border-bottom: 10px solid transparent;
+}
+
+.tasklist .content span {
+    position: absolute;
+    top: 0;
+    left: -120px;
+
+    padding: 5px 5px 5px 15px;
+
+    background-color: #eeeeee;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.pages {
+    width: 100px;
+    margin-top: 10px;
+
+    text-align: center;
+
+    background-color: rgb(98, 100, 241);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.pages .active-page > span {
+    color: rgba(0,0,0,0.4);
+    font-weight: bold;
+}
+
+.pages span {
+    color: #ffffdd;
+}
+
+.pages span:hover {
+    text-decoration: underline;
+    text-decoration-color: #ffffdd;
+}
+
+/*{task}/show and task/new style*/
+.task {
+    position: relative;
+
+    width: 650px;
+    height: auto;
+    padding: 50px;
+
+    font-family: my-sans-serif, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    color: rgb(98, 98, 98);
+    text-align: left;
+
+    background-color: rgb(241, 241, 241);
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 5px;
+}
+
+.task div {
+    margin-bottom: 5px;
+}
+
+.task label {
+    width: 180px;
+    margin-right: 5px;
+
+    text-align: right;
+}
+.task input,
+.task textarea {
+    padding: 3px;
+
+    vertical-align: top;
+
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+}
+
+.task input[type='checkbox'] {
+    vertical-align: middle;
+}
+
+.task #username,
+.task #email,
+.task #content {
+    width: 340px;
+}
+
+.error {
+    position: absolute;
+    top: 10px;
+
+    color: #ff0000;
+}
+
+.login .error {
+    left: 10px;
+
+    width: 500px;
+}
+
+/*redirect style*/
+.info-message {
+    width: 600px;
+    padding: 20px;
+
+    border-color: rgb(227, 227, 227);
+    border-radius: 5px;
+}
+
+.success-message {
+    background-color: rgba(9,255,0,0.46);
+}
+
+.error-message {
+    background-color: rgba(255,0,0,0.46);
+}
+
+/*login-logout buttons*/
+div.auth-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    display: inline-block;
+    height: 40px;
+    width: 80px;
+
+    border-radius: 5px;
+    border: 2px solid #08ddcd;
+}
+
+div.auth-btn .link {
+    display: block;
+    width: inherit;
+    height: inherit;
+
+    text-align: center;
+    line-height: 40px;
+    font-family: arial, serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+div.logout {
+    background-color: brown;
+}
+div.login {
+    background-color: #1a2c94;
+}

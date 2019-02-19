@@ -1,0 +1,7 @@
+/vendor/
+/tmp/
+composer.json
+mock
+public/test.html
+public/test.php
+/.idea/

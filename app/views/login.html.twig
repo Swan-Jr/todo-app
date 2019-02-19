@@ -1,0 +1,33 @@
+{% extends 'default.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ root_prefix }}css/login.css"/>
+{% endblock %}
+
+{% block body %}
+    <section class="login">
+        <article>
+            <form action="{{ formAction }}" method="post">
+                {% if errors is defined %}
+                <div class="error">
+                    Проверьте, пожалуйста, правильность введенных данных!
+                </div>
+                {% endif %}
+                <div>
+                    <label for="username">Логин</label>
+                    <input type="text" id="username" name="username" value="{{ errors ? username : '' }}"/>
+                </div>
+                <div>
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password"/>
+                </div>
+                <hr/>
+                <button type="button" class="btn btn-primary float-right"
+                        onclick="window.location='{{ backRef }}'">Отмена</button>
+                <button type="submit" class="btn btn-primary mr-4 float-right">Войти</button>
+            </form>
+        </article>
+    </section>
+{% endblock %}

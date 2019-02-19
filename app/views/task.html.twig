@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block body %}
+    <div class="task">
+        <form action="{{ formAction }}" method="POST">
+            {% if errors is defined %}
+                <div class="error">
+                    Проверьте, пожалуйста, правильность введенных данных!
+                </div>
+            {% endif %}
+            <div>
+                <label for="username">Имя пользователя</label>
+                <input type="text" name="username" id="username" value="{{ new ? '' : task.username }}">
+            </div>
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" value="{{ new ? '' : task.email }}">
+            </div>
+            <div>
+                <label for="content">Текст задачи</label>
+                <textarea name="content" id="content" cols="30" rows="3">{{ new ? '' : task.content }}</textarea>
+            </div>
+            <div>
+                <label>Статус</label>
+                <input type="checkbox" name="status" id="status" {{ new ? '' : task.status }}>
+            </div>
+            <hr/>
+            <button type="button" class="btn btn-primary float-right"
+                    onclick="window.location='{{ backRef }}'">Отмена</button>
+            <button type="submit" class="btn btn-primary mr-4 float-right">Сохранить</button>
+        </form>
+        {#{% for item in input %}
+            <div>
+                <span>{{ item.name }}: </span> {{ item.content }}
+            </div>
+
+        {% endfor %}#}
+    </div>
+    {{ parent() }}
+{% endblock %}
